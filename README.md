@@ -137,3 +137,76 @@ output => OK
 ```
 output => "5"
 ```
+
+Finally run `ctrl+c` to stop Redis
+
+
+## Getting a command prompt in a Running CONATINER
+
+`docker exec -it <container-id> sh`
+
+Now, you can run commands related to the running container
+
+for example:
+
+```
+docker exec -it b661fbeb9ae4 sh
+cd ~/ls
+cd /ls
+bin  boot  data  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr var
+echo Namaste-Shell
+Namaste-Shell
+redis-cli
+127.0.0.1:6379> set name "Raj"
+OK
+127.0.0.1:6379> get name
+"Raj"
+127.0.0.1:6379>
+```
+
+`sh` => shell command processors just like bash or zsh
+
+Ctrl+C/exit  => to exit from shell command
+
+
+##### Test shell command with busybox
+
+`docker run -it busybox sh`
+
+```
+docker run -it busybox sh
+/ # ls
+bin    dev    etc    home   lib    lib64  proc   root   sys    tmp    usr    var
+/ # ping google.com
+PING google.com (142.250.194.78): 56 data bytes
+64 bytes from 142.250.194.78: seq=0 ttl=63 time=59.180 ms
+64 bytes from 142.250.194.78: seq=1 ttl=63 time=60.597 ms
+64 bytes from 142.250.194.78: seq=2 ttl=63 time=61.102 ms
+64 bytes from 142.250.194.78: seq=3 ttl=63 time=67.918 ms
+64 bytes from 142.250.194.78: seq=4 ttl=63 time=60.160 ms
+^C
+--- google.com ping statistics ---
+5 packets transmitted, 5 packets received, 0% packet loss
+round-trip min/avg/max = 59.180/61.791/67.918 ms
+/ # ^C/ # echo NamasteBusyBox
+NamasteBusyBox
+```
+
+`CTRL+D` or Type exit to `exit `from shell
+
+#### Container Islation:
+
+Running same container more than once don't share instance/container space
+
+for example
+
+Run busybox twice in a two terminals
+
+Create file in first container with touch command and then do ls to check the file has been created
+
+Now check the 2nd busybox container by running ls command. You will not find the file. So container runs in an isolation mode
+
+##### ############################### THE END OF COMMANDS ###############################
+
+
+### Building Custom Images Through Docker Server
