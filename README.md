@@ -6,7 +6,7 @@
 
 ###### To run hello-world image to check docker installation. After command is ran it will create container for "hello-world"
 
-docker run hello-world
+`docker run hello-world`
 
 //"Namaste To Docker world" text will be overriden to the output of busybox container. Busybox have two programs - ls and echo.
 // It means this can be run with other image because these program may not exist in other image
